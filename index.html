@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U B Marine Electrical Sdn. Bhd.</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<style>
+  :root{
+    --navy:#0b2340;
+    --navy-2:#123a63;
+    --accent:#f2a900;
+    --accent-2:#0e7c86;
+    --bg:#f7f9fb;
+    --text:#1c2b3a;
+    --muted:#5b6b7c;
+    --white:#ffffff;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{transition:none !important;opacity:1 !important;transform:none !important;}
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1140px;margin:0 auto;padding:0 24px;}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:var(--navy);
+    box-shadow:0 2px 12px rgba(0,0,0,.15);
+  }
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;max-width:1140px;margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:12px;color:var(--white);
+  }
+  .logo-mark{
+    width:64px;height:64px;border-radius:50%;
+    background:#ffffff;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;padding:4px;box-shadow:0 1px 5px rgba(0,0,0,.25);
+  }
+  .logo-mark img{width:100%;height:100%;object-fit:contain;}
+  .logo-text .en{font-weight:700;font-size:17px;letter-spacing:.5px;}
+  nav ul{
+    list-style:none;display:flex;gap:28px;
+  }
+  nav a{color:#e7edf5;font-size:14px;font-weight:500;transition:color .2s;}
+  nav a:hover{color:var(--accent);}
+  .lang-toggle{
+    background:transparent;border:1px solid #4a627f;color:#e7edf5;
+    padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;
+    transition:all .2s;
+  }
+  .lang-toggle:hover{background:var(--accent);border-color:var(--accent);color:var(--navy);}
+  .nav-wrap{display:flex;align-items:center;gap:28px;}
+  .menu-btn{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;}
+
+  /* Hero */
+  .hero{
+    background:
+      linear-gradient(120deg, rgba(9,28,52,.94) 0%, rgba(14,45,79,.90) 45%, rgba(9,28,52,.80) 100%),
+      url("assets/hero-msb.jpg");
+    background-size:cover;
+    background-position:center 35%;
+    color:var(--white);position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-80px;top:-80px;width:400px;height:400px;
+    background:radial-gradient(circle,rgba(242,169,0,.18),transparent 70%);
+  }
+  .hero-inner{
+    max-width:1140px;margin:0 auto;padding:100px 24px 90px;position:relative;z-index:1;
+  }
+  .badge{
+    display:inline-block;background:rgba(242,169,0,.15);border:1px solid rgba(242,169,0,.5);
+    color:var(--accent);font-size:12px;padding:6px 14px;border-radius:20px;margin-bottom:20px;
+    letter-spacing:.5px;
+  }
+  .hero h1{font-size:clamp(28px,4.2vw,46px);font-weight:800;margin-bottom:16px;max-width:720px;}
+  .hero p.sub{font-size:17px;color:#c6d3e2;max-width:600px;margin-bottom:32px;}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:13px 28px;border-radius:6px;font-weight:600;font-size:14px;
+    cursor:pointer;transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--accent);color:var(--navy);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(242,169,0,.35);}
+  .btn-outline{border:1px solid #6d84a0;color:var(--white);}
+  .btn-outline:hover{border-color:var(--white);}
+
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    max-width:1140px;margin:-46px auto 0;padding:0 24px;position:relative;z-index:2;
+  }
+  .stat-card{
+    background:var(--white);border-radius:var(--radius);padding:24px 20px;text-align:center;
+    box-shadow:0 10px 30px rgba(11,35,64,.1);
+  }
+  .stat-card .num{font-size:28px;font-weight:800;color:var(--navy-2);}
+  .stat-card .lbl{font-size:12.5px;color:var(--muted);margin-top:4px;}
+
+  section{padding:90px 0 70px;}
+  .section-head{max-width:640px;margin:0 auto 50px;text-align:center;}
+  .eyebrow{color:var(--accent-2);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;}
+  .section-head h2{font-size:clamp(24px,3vw,34px);font-weight:800;color:var(--navy);margin-bottom:12px;}
+  .section-head p{color:var(--muted);font-size:15px;}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .about-img{
+    border-radius:var(--radius);height:440px;overflow:hidden;
+    box-shadow:0 16px 40px rgba(11,35,64,.18);
+  }
+  .about-img img{width:100%;height:100%;object-fit:cover;object-position:center 25%;}
+  .about-text h3{font-size:22px;color:var(--navy);margin-bottom:14px;font-weight:700;}
+  .about-text p{color:var(--muted);margin-bottom:14px;font-size:15px;}
+  .check-list{margin-top:20px;}
+  .check-list li{list-style:none;display:flex;gap:10px;margin-bottom:10px;color:var(--text);font-size:14.5px;}
+  .check-list li::before{content:"✓";color:var(--accent-2);font-weight:800;}
+
+  /* Services */
+  .services{background:var(--white);}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .svc-card{
+    background:var(--bg);border-radius:var(--radius);padding:30px 26px;
+    border:1px solid #e6ebf1;transition:transform .2s, box-shadow .2s;
+  }
+  .svc-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(11,35,64,.08);border-color:transparent;}
+  .svc-icon{
+    width:48px;height:48px;border-radius:10px;background:var(--navy);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px;
+  }
+  .svc-card h3{font-size:17px;color:var(--navy);margin-bottom:10px;font-weight:700;}
+  .svc-card p{font-size:14px;color:var(--muted);}
+
+  .svc-featured{
+    display:flex;gap:30px;align-items:center;
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);
+    border-radius:var(--radius);padding:42px 40px;margin-bottom:20px;
+    box-shadow:0 20px 46px rgba(11,35,64,.22);position:relative;overflow:hidden;
+  }
+  .svc-featured::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    background:radial-gradient(circle,rgba(242,169,0,.16),transparent 70%);
+  }
+  .svc-featured-icon{
+    width:86px;height:86px;border-radius:18px;background:rgba(242,169,0,.14);
+    border:1px solid rgba(242,169,0,.4);display:flex;align-items:center;justify-content:center;
+    font-size:38px;color:var(--accent);flex-shrink:0;position:relative;z-index:1;
+  }
+  .svc-featured-text{position:relative;z-index:1;}
+  .svc-tag{
+    display:inline-block;background:rgba(242,169,0,.15);border:1px solid rgba(242,169,0,.5);
+    color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+    padding:4px 12px;border-radius:14px;margin-bottom:12px;
+  }
+  .svc-featured-text h3{font-size:23px;color:var(--white);margin-bottom:10px;font-weight:800;}
+  .svc-featured-text p{font-size:15px;color:#c6d3e2;max-width:660px;line-height:1.65;}
+  .svc-sub-label{
+    display:flex;align-items:center;gap:14px;margin:36px 0 22px;
+    color:var(--muted);font-size:12.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  }
+  .svc-sub-label::after{content:"";flex:1;height:1px;background:#e0e6ee;}
+  @media(max-width:640px){
+    .svc-featured{flex-direction:column;align-items:flex-start;padding:32px 26px;}
+  }
+
+  /* Gallery */
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .gallery-item{
+    position:relative;border-radius:var(--radius);overflow:hidden;height:230px;
+    box-shadow:0 10px 26px rgba(11,35,64,.12);
+  }
+  .gallery-item img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;
+  }
+  .gallery-item:hover img{transform:scale(1.08);}
+  .gallery-item figcaption{
+    position:absolute;left:0;right:0;bottom:0;
+    background:linear-gradient(0deg,rgba(11,35,64,.85),transparent);
+    color:var(--white);font-size:13px;font-weight:600;padding:26px 14px 12px;
+  }
+
+  /* Why us */
+  .why{background:var(--navy);color:var(--white);}
+  .why .section-head h2{color:var(--white);}
+  .why .section-head p{color:#c6d3e2;}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .why-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:26px 22px;text-align:center;}
+  .why-card .n{font-size:26px;color:var(--accent);font-weight:800;margin-bottom:10px;}
+  .why-card h4{font-size:15px;margin-bottom:8px;font-weight:700;}
+  .why-card p{font-size:13px;color:#c6d3e2;}
+
+  /* Process */
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+  .process-step{padding:0 18px;text-align:center;position:relative;}
+  .process-step .circle{
+    width:54px;height:54px;border-radius:50%;background:var(--navy);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;
+    margin:0 auto 16px;position:relative;z-index:2;
+  }
+  .process-step h4{font-size:15px;color:var(--navy);margin-bottom:8px;font-weight:700;}
+  .process-step p{font-size:13px;color:var(--muted);}
+  .process-line{
+    position:absolute;top:27px;left:0;right:0;height:2px;background:#e0e6ee;z-index:1;
+  }
+
+  /* Contact */
+  .contact{background:var(--white);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .contact-info-card{
+    background:var(--bg);border-radius:var(--radius);padding:34px;border:1px solid #e6ebf1;
+  }
+  .contact-info-card h3{color:var(--navy);font-size:19px;margin-bottom:22px;font-weight:700;}
+  .info-row{display:flex;gap:14px;margin-bottom:22px;}
+  .info-row .ic{
+    width:38px;height:38px;border-radius:8px;background:var(--navy);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;
+  }
+  .info-row .lbl{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+  .info-row .val{font-size:14.5px;color:var(--text);font-weight:500;}
+  .phone-link, .email-link{
+    display:flex;align-items:center;gap:8px;font-size:14.5px;color:var(--text);font-weight:500;
+    margin-bottom:6px;transition:color .15s;
+  }
+  .phone-link:last-child, .email-link:last-child{margin-bottom:0;}
+  .phone-link:hover{color:#1da851;}
+  .email-link:hover{color:var(--accent-2);}
+  .wa-icon{width:17px;height:17px;flex-shrink:0;fill:#25D366;}
+  .email-icon{width:16px;height:16px;flex-shrink:0;fill:var(--accent-2);}
+
+  .wa-float{
+    position:fixed;right:22px;bottom:22px;width:56px;height:56px;border-radius:50%;
+    background:#25D366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(37,211,102,.45);z-index:300;transition:transform .2s;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float svg{width:29px;height:29px;fill:#fff;}
+  @media(max-width:520px){
+    .wa-float{right:16px;bottom:16px;width:50px;height:50px;}
+    .wa-float svg{width:25px;height:25px;}
+  }
+  form{display:flex;flex-direction:column;gap:16px;}
+  form input, form textarea{
+    width:100%;padding:13px 16px;border:1px solid #dde4ec;border-radius:8px;font-size:14px;
+    font-family:inherit;background:var(--bg);
+  }
+  form textarea{min-height:120px;resize:vertical;}
+  form label{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:-8px;}
+  .form-note{font-size:12.5px;color:var(--muted);margin-top:4px;}
+
+  footer{
+    background:#081a30;color:#9db0c4;padding:44px 0 26px;
+    border-top:3px solid transparent;
+    border-image:linear-gradient(90deg,var(--accent),var(--accent-2)) 1;
+  }
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:30px;}
+  .footer-grid h4{color:var(--white);font-size:15px;margin-bottom:16px;font-weight:700;}
+  .footer-grid ul{list-style:none;}
+  .footer-grid li{margin-bottom:10px;font-size:13.5px;}
+  .footer-grid a:hover{color:var(--accent);}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.08);padding-top:20px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;
+  }
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease-out, transform .7s ease-out;}
+  .reveal.visible{opacity:1;transform:none;}
+  .reveal-1{transition-delay:.08s;}
+  .reveal-2{transition-delay:.16s;}
+  .reveal-3{transition-delay:.24s;}
+  .reveal-4{transition-delay:.32s;}
+  .reveal-5{transition-delay:.4s;}
+  .reveal-6{transition-delay:.48s;}
+
+  nav a.active{color:var(--accent);}
+
+  [data-cn]{display:none;}
+  html[data-lang="cn"] [data-en]{display:none;}
+  html[data-lang="cn"] [data-cn]{display:inline;}
+  html[data-lang="cn"] [data-cn-block]{display:block;}
+  html[data-lang="cn"] [data-cn].badge{display:inline-block;}
+  html[data-lang="cn"] [data-cn].svc-tag{display:inline-block;}
+
+  @media(max-width:900px){
+    .nav-wrap{position:relative;}
+    nav{
+      display:none;position:absolute;top:calc(100% + 14px);right:0;
+      background:var(--navy-2);border-radius:10px;padding:10px 0;min-width:190px;
+      box-shadow:0 14px 34px rgba(0,0,0,.3);
+    }
+    nav.open{display:block;}
+    nav ul{flex-direction:column;gap:0;}
+    #mainNav a{display:block !important;padding:11px 22px;}
+    .menu-btn{display:block;}
+    .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .stats, .svc-grid, .why-grid, .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .process-grid{grid-template-columns:repeat(2,1fr);row-gap:36px;}
+    .process-line{display:none;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:520px){
+    .stats, .svc-grid, .why-grid, .gallery-grid{grid-template-columns:1fr;}
+    .hero-inner{padding:80px 20px 70px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark"><img src="assets/logo.png" alt="U B Marine Electrical Sdn. Bhd. logo"></div>
+      <div class="logo-text">
+        <div class="en">U B MARINE ELECTRICAL SDN. BHD.</div>
+      </div>
+    </div>
+    <div class="nav-wrap">
+      <nav id="mainNav">
+        <ul>
+          <li><a href="#about" data-en>About</a><a href="#about" data-cn>关于我们</a></li>
+          <li><a href="#services" data-en>Services</a><a href="#services" data-cn>服务项目</a></li>
+          <li><a href="#gallery" data-en>Our Work</a><a href="#gallery" data-cn>作品展示</a></li>
+          <li><a href="#why" data-en>Why Us</a><a href="#why" data-cn>我们的优势</a></li>
+          <li><a href="#process" data-en>Process</a><a href="#process" data-cn>工作流程</a></li>
+          <li><a href="#contact" data-en>Contact</a><a href="#contact" data-cn>联系我们</a></li>
+        </ul>
+      </nav>
+      <button class="lang-toggle" id="langToggle">中文 / EN</button>
+      <button class="menu-btn" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="badge" data-en>MARINE &amp; INDUSTRIAL ELECTRICAL SOLUTIONS</span>
+    <span class="badge" data-cn>船舶与工业电气解决方案</span>
+    <h1 data-en>Engineering Reliable Main Switchboards for Marine &amp; Industrial Power Systems</h1>
+    <h1 data-cn data-cn-block>为船舶与工业电力系统打造可靠的主配电盘</h1>
+    <p class="sub" data-en>U B Marine Electrical Sdn. Bhd. designs, fabricates and installs main switchboards (MSB), wiring systems and electrical panels for marine, industrial and commercial applications — built in Sarawak, Malaysia, to international standards.</p>
+    <p class="sub" data-cn data-cn-block>U B Marine Electrical Sdn. Bhd. 专注于主配电盘（MSB）设计制造、电气布线与配电盘柜安装工程，服务船舶、工业及商用领域，总部位于马来西亚砂拉越，依循国际标准施工。</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary" data-en>Request a Quote</a>
+      <a href="#contact" class="btn btn-primary" data-cn>获取报价</a>
+      <a href="#services" class="btn btn-outline" data-en>Our Services</a>
+      <a href="#services" class="btn btn-outline" data-cn>查看服务</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-card reveal reveal-1"><div class="num">15+</div><div class="lbl" data-en>Years in Operation</div><div class="lbl" data-cn data-cn-block>年行业经验</div></div>
+  <div class="stat-card reveal reveal-2"><div class="num">500+</div><div class="lbl" data-en>Projects Completed</div><div class="lbl" data-cn data-cn-block>完成项目数</div></div>
+  <div class="stat-card reveal reveal-3"><div class="num">3000A</div><div class="lbl" data-en>MSB Certified Rating</div><div class="lbl" data-cn data-cn-block>MSB认证等级</div></div>
+  <div class="stat-card reveal reveal-4"><div class="num">100%</div><div class="lbl" data-en>In-house Fabrication</div><div class="lbl" data-cn data-cn-block>自主生产制造</div></div>
+</div>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-img reveal">
+      <img src="assets/about-msb.jpg" alt="Main switchboard (MSB) panels manufactured by U B Marine Electrical Sdn. Bhd." loading="lazy">
+    </div>
+    <div class="about-text reveal reveal-2">
+      <div class="eyebrow" data-en>ABOUT US</div>
+      <div class="eyebrow" data-cn data-cn-block>关于我们</div>
+      <h3 data-en>A Family-Rooted Electrical Engineering Business</h3>
+      <h3 data-cn data-cn-block>扎根本地的家族电气工程企业</h3>
+      <p data-en>U B Marine Electrical Sdn. Bhd. is a Sarawak-based main switchboard (MSB) manufacturer and electrical contractor, serving marine, industrial and commercial projects alike. Our team handles the full workflow in-house — from AutoCAD circuit design and CNC sheet-metal cutting to panel wiring, testing and on-site commissioning.</p>
+      <p data-cn data-cn-block>U B Marine Electrical Sdn. Bhd. 总部位于马来西亚砂拉越，是一家主配电盘（MSB）制造商及电气承包商，服务范围涵盖船舶、工业及商用项目。我们的团队全程自主完成从AutoCAD电路设计、CNC钣金切割、盘柜布线、测试到现场调试的整套工作流程。</p>
+      <ul class="check-list">
+        <li><span data-en>In-house AutoCAD circuit design</span><span data-cn>自主AutoCAD电路设计</span></li>
+        <li><span data-en>CNC metal sheet cutting &amp; fabrication</span><span data-cn>CNC钣金切割与制造</span></li>
+        <li><span data-en>Certified up to 3000A MSB systems</span><span data-cn>认证承接高达3000A的MSB系统</span></li>
+        <li><span data-en>Marine-standard wiring &amp; installation</span><span data-cn>符合船级标准的布线与安装</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en>WHAT WE DO</div>
+      <div class="eyebrow" data-cn data-cn-block>业务范围</div>
+      <h2 data-en>Our Services</h2>
+      <h2 data-cn data-cn-block>服务项目</h2>
+      <p data-en>Main switchboard manufacturing is our core business — backed by full in-house capabilities from design to commissioning.</p>
+      <p data-cn data-cn-block>主配电盘（MSB）制造是我们的核心业务，并配备从设计到调试的完整自主能力作为支撑。</p>
+    </div>
+
+    <div class="svc-featured reveal">
+      <div class="svc-featured-icon">⚡</div>
+      <div class="svc-featured-text">
+        <span class="svc-tag" data-en>CORE BUSINESS</span>
+        <span class="svc-tag" data-cn>核心业务</span>
+        <h3 data-en>Main Switchboard (MSB) Manufacturing</h3>
+        <h3 data-cn data-cn-block>主配电盘（MSB）制造</h3>
+        <p data-en>Custom-built main switchboards and distribution panels, certified up to 3000A, engineered to project specification for marine, industrial and commercial applications. This is what we do — everything else below exists to support it.</p>
+        <p data-cn data-cn-block>定制制造主配电盘与配电柜，认证承接高达3000A，依据项目规格为船舶、工业及商用场景打造。这是我们的主业，以下服务都是为支撑这项核心业务而配备的能力。</p>
+      </div>
+    </div>
+
+    <div class="svc-sub-label">
+      <span data-en>Supporting Capabilities</span>
+      <span data-cn data-cn-block>配套能力</span>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal reveal-1">
+        <div class="svc-icon">📐</div>
+        <h3 data-en>Circuit Design (AutoCAD)</h3>
+        <h3 data-cn data-cn-block>电路设计（AutoCAD）</h3>
+        <p data-en>Detailed single-line and wiring diagrams prepared in-house for approval, fabrication and as-built records.</p>
+        <p data-cn data-cn-block>自主绘制单线图与接线图，用于审批、生产与竣工存档。</p>
+      </div>
+      <div class="svc-card reveal reveal-2">
+        <div class="svc-icon">🛠️</div>
+        <h3 data-en>CNC Sheet Metal Fabrication</h3>
+        <h3 data-cn data-cn-block>CNC钣金加工</h3>
+        <p data-en>Precision CNC cutting and forming of enclosures and panel housings for a clean, durable finish.</p>
+        <p data-cn data-cn-block>精密CNC切割与折弯，打造坚固美观的外壳与盘柜结构。</p>
+      </div>
+      <div class="svc-card reveal reveal-3">
+        <div class="svc-icon">🚢</div>
+        <h3 data-en>Marine Electrical Installation</h3>
+        <h3 data-cn data-cn-block>船舶电气安装</h3>
+        <p data-en>Shipboard wiring, power distribution and electrical system installation for vessels and marine platforms.</p>
+        <p data-cn data-cn-block>为船舶及海事平台提供船上布线、配电与电气系统安装。</p>
+      </div>
+      <div class="svc-card reveal reveal-4">
+        <div class="svc-icon">🔧</div>
+        <h3 data-en>Testing &amp; Commissioning</h3>
+        <h3 data-cn data-cn-block>测试与调试</h3>
+        <p data-en>Functional testing, load checks and on-site commissioning to ensure systems are safe and compliant before handover.</p>
+        <p data-cn data-cn-block>交付前进行功能测试、负载检测及现场调试，确保系统安全合规。</p>
+      </div>
+      <div class="svc-card reveal reveal-5">
+        <div class="svc-icon">🧰</div>
+        <h3 data-en>Maintenance &amp; Repair</h3>
+        <h3 data-cn data-cn-block>维护与维修</h3>
+        <p data-en>Scheduled maintenance, troubleshooting and repair services for existing switchboards and electrical systems.</p>
+        <p data-cn data-cn-block>为现有配电盘与电气系统提供定期维护、故障排查与维修服务。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en>OUR WORK</div>
+      <div class="eyebrow" data-cn data-cn-block>作品展示</div>
+      <h2 data-en>Precision in Every Detail</h2>
+      <h2 data-cn data-cn-block>细节之处见工艺</h2>
+      <p data-en>A closer look at our fabrication, wiring and installation work.</p>
+      <p data-cn data-cn-block>近距离看我们的制造、接线与安装工作。</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="gallery-item reveal reveal-1">
+        <img src="assets/gallery-wiring-1.jpg" alt="Neatly labelled MSB internal wiring by U B Marine Electrical" loading="lazy">
+        <figcaption><span data-en>MSB Internal Wiring</span><span data-cn>MSB内部接线</span></figcaption>
+      </figure>
+      <figure class="gallery-item reveal reveal-2">
+        <img src="assets/gallery-wiring-2.jpg" alt="Close-up of contactors and relays inside a main switchboard" loading="lazy">
+        <figcaption><span data-en>MSB Component Assembly</span><span data-cn>MSB元件装配</span></figcaption>
+      </figure>
+      <figure class="gallery-item reveal reveal-3">
+        <img src="assets/gallery-rudder.jpg" alt="Rudder angle indicator being fitted on a bridge console" loading="lazy">
+        <figcaption><span data-en>Rudder Angle Indicator</span><span data-cn>舵角指示器</span></figcaption>
+      </figure>
+      <figure class="gallery-item reveal reveal-4">
+        <img src="assets/gallery-team.jpg" alt="U B Marine Electrical team assembling a bridge console" loading="lazy">
+        <figcaption><span data-en>Console Assembly</span><span data-cn>控制台组装</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en>WHY CHOOSE US</div>
+      <div class="eyebrow" data-cn data-cn-block>我们的优势</div>
+      <h2 data-en>Built on Precision and Trust</h2>
+      <h2 data-cn data-cn-block>精工品质，值得信赖</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-1">
+        <div class="n">01</div>
+        <h4 data-en>Certified Expertise</h4>
+        <h4 data-cn data-cn-block>专业认证</h4>
+        <p data-en>MSB 3000A certified engineering team.</p>
+        <p data-cn data-cn-block>团队持有MSB 3000A认证资质。</p>
+      </div>
+      <div class="why-card reveal reveal-2">
+        <div class="n">02</div>
+        <h4 data-en>Full In-house Process</h4>
+        <h4 data-cn data-cn-block>全流程自主生产</h4>
+        <p data-en>Design, fabrication and installation under one roof.</p>
+        <p data-cn data-cn-block>设计、制造、安装一体化完成。</p>
+      </div>
+      <div class="why-card reveal reveal-3">
+        <div class="n">03</div>
+        <h4 data-en>Local Family Business</h4>
+        <h4 data-cn data-cn-block>本地家族企业</h4>
+        <p data-en>Rooted in Sarawak with hands-on, accountable service.</p>
+        <p data-cn data-cn-block>扎根砂拉越，服务用心、责任到位。</p>
+      </div>
+      <div class="why-card reveal reveal-4">
+        <div class="n">04</div>
+        <h4 data-en>Quality &amp; Safety First</h4>
+        <h4 data-cn data-cn-block>品质与安全优先</h4>
+        <p data-en>Rigorous testing before every handover.</p>
+        <p data-cn data-cn-block>交付前严格测试，确保安全达标。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en>HOW WE WORK</div>
+      <div class="eyebrow" data-cn data-cn-block>工作流程</div>
+      <h2 data-en>Our Process</h2>
+      <h2 data-cn data-cn-block>项目流程</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-line"></div>
+      <div class="process-step reveal reveal-1">
+        <div class="circle">1</div>
+        <h4 data-en>Consultation</h4>
+        <h4 data-cn data-cn-block>需求咨询</h4>
+        <p data-en>Understand your project requirements and specifications.</p>
+        <p data-cn data-cn-block>了解项目需求与技术规格。</p>
+      </div>
+      <div class="process-step reveal reveal-2">
+        <div class="circle">2</div>
+        <h4 data-en>Design</h4>
+        <h4 data-cn data-cn-block>设计绘图</h4>
+        <p data-en>AutoCAD circuit design and technical drawings.</p>
+        <p data-cn data-cn-block>AutoCAD电路设计与图纸制作。</p>
+      </div>
+      <div class="process-step reveal reveal-3">
+        <div class="circle">3</div>
+        <h4 data-en>Fabrication</h4>
+        <h4 data-cn data-cn-block>生产制造</h4>
+        <p data-en>CNC cutting, panel building and wiring.</p>
+        <p data-cn data-cn-block>CNC切割、盘柜组装与布线。</p>
+      </div>
+      <div class="process-step reveal reveal-4">
+        <div class="circle">4</div>
+        <h4 data-en>Installation &amp; Handover</h4>
+        <h4 data-cn data-cn-block>安装与交付</h4>
+        <p data-en>On-site installation, testing and commissioning.</p>
+        <p data-cn data-cn-block>现场安装、测试与调试交付。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en>GET IN TOUCH</div>
+      <div class="eyebrow" data-cn data-cn-block>联系我们</div>
+      <h2 data-en>Contact Us</h2>
+      <h2 data-cn data-cn-block>联系方式</h2>
+      <p data-en>Have a project in mind? Reach out for a consultation or quote.</p>
+      <p data-cn data-cn-block>有项目需求？欢迎联系我们咨询或获取报价。</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info-card reveal">
+        <h3 data-en>Company Information</h3>
+        <h3 data-cn data-cn-block>公司资料</h3>
+        <div class="info-row">
+          <div class="ic">📍</div>
+          <div>
+            <div class="lbl" data-en>Address</div><div class="lbl" data-cn data-cn-block>地址</div>
+            <div class="val" data-en>No. 28, Lorong 4, Jalan Ding Lik Kwong, Sungai Merah, 96000 Sibu, Sarawak, Malaysia</div>
+            <div class="val" data-cn data-cn-block>马来西亚砂拉越诗巫（Sibu）双溪美拉（Sungai Merah）Jalan Ding Lik Kwong 4巷28号，邮编96000</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="ic">📞</div>
+          <div>
+            <div class="lbl" data-en>Phone / WhatsApp</div><div class="lbl" data-cn data-cn-block>电话 / WhatsApp</div>
+            <a class="phone-link" href="https://wa.me/60168799152" target="_blank" rel="noopener">
+              <svg class="wa-icon" viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.625.86 5.062 2.313 7.031L4 29l7.163-2.281A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm0 21.938a9.9 9.9 0 0 1-5.049-1.375l-.362-.214-4.25 1.354 1.375-4.144-.235-.375A9.9 9.9 0 0 1 6.063 15c0-5.487 4.451-9.938 9.938-9.938S25.938 9.513 25.938 15 21.487 24.938 16.001 24.938zm5.438-7.438c-.297-.148-1.757-.867-2.03-.966-.273-.099-.472-.148-.67.148-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.148-1.253-.462-2.387-1.473-.882-.787-1.478-1.76-1.652-2.057-.173-.297-.019-.457.13-.604.134-.133.297-.347.446-.52.148-.173.198-.297.297-.495.099-.198.05-.372-.025-.52-.075-.148-.67-1.614-.918-2.211-.242-.579-.489-.5-.67-.51l-.57-.01c-.198 0-.52.075-.792.372-.273.297-1.04 1.017-1.04 2.48 0 1.463 1.065 2.877 1.213 3.075.148.198 2.096 3.2 5.08 4.487.71.306 1.262.489 1.694.626.712.227 1.36.195 1.873.118.571-.085 1.757-.719 2.005-1.413.248-.694.248-1.288.173-1.413-.075-.124-.273-.198-.57-.347z"/></svg>
+              <span data-en>+60 16-879 9152 (Mr. Yit Nai Soon)</span><span data-cn>+60 16-879 9152（Yit Nai Soon 先生）</span>
+            </a>
+            <a class="phone-link" href="https://wa.me/60168869154" target="_blank" rel="noopener">
+              <svg class="wa-icon" viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.625.86 5.062 2.313 7.031L4 29l7.163-2.281A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm0 21.938a9.9 9.9 0 0 1-5.049-1.375l-.362-.214-4.25 1.354 1.375-4.144-.235-.375A9.9 9.9 0 0 1 6.063 15c0-5.487 4.451-9.938 9.938-9.938S25.938 9.513 25.938 15 21.487 24.938 16.001 24.938zm5.438-7.438c-.297-.148-1.757-.867-2.03-.966-.273-.099-.472-.148-.67.148-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.148-1.253-.462-2.387-1.473-.882-.787-1.478-1.76-1.652-2.057-.173-.297-.019-.457.13-.604.134-.133.297-.347.446-.52.148-.173.198-.297.297-.495.099-.198.05-.372-.025-.52-.075-.148-.67-1.614-.918-2.211-.242-.579-.489-.5-.67-.51l-.57-.01c-.198 0-.52.075-.792.372-.273.297-1.04 1.017-1.04 2.48 0 1.463 1.065 2.877 1.213 3.075.148.198 2.096 3.2 5.08 4.487.71.306 1.262.489 1.694.626.712.227 1.36.195 1.873.118.571-.085 1.757-.719 2.005-1.413.248-.694.248-1.288.173-1.413-.075-.124-.273-.198-.57-.347z"/></svg>
+              <span data-en>+60 16-886 9154 (Office)</span><span data-cn>+60 16-886 9154（办公室）</span>
+            </a>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="ic">✉️</div>
+          <div>
+            <div class="lbl" data-en>Email</div><div class="lbl" data-cn data-cn-block>邮箱</div>
+            <a class="email-link" href="mailto:ubest88@hotmail.com">
+              <svg class="email-icon" viewBox="0 0 24 24"><path d="M2 5.5C2 4.67 2.67 4 3.5 4h17c.83 0 1.5.67 1.5 1.5v13c0 .83-.67 1.5-1.5 1.5h-17C2.67 20 2 19.33 2 18.5v-13zm2.2.5 7.8 5.85L19.8 6H4.2zM20 8.13l-7.42 5.57a1 1 0 0 1-1.16 0L4 8.13V18h16V8.13z"/></svg>
+              ubest88@hotmail.com
+            </a>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="ic">🕒</div>
+          <div>
+            <div class="lbl" data-en>Business Hours</div><div class="lbl" data-cn data-cn-block>营业时间</div>
+            <div class="val" data-en>Mon–Fri: 8am–5pm<br>Sat: 8am–4:30pm</div>
+            <div class="val" data-cn data-cn-block>周一至周五：8:00–17:00<br>周六：8:00–16:30</div>
+          </div>
+        </div>
+      </div>
+      <form class="reveal reveal-2" onsubmit="event.preventDefault(); alert(document.documentElement.getAttribute('data-lang')==='cn' ? '此表单为演示用途，尚未连接发送功能。' : 'This form is a placeholder — not yet connected to send messages.');">
+        <label data-en>Name</label><label data-cn>姓名</label>
+        <input type="text" placeholder="" required>
+        <label data-en>Email</label><label data-cn>邮箱</label>
+        <input type="email" placeholder="" required>
+        <label data-en>Message</label><label data-cn>留言内容</label>
+        <textarea required></textarea>
+        <button type="submit" class="btn btn-primary" data-en>Send Message</button>
+        <button type="submit" class="btn btn-primary" data-cn>发送信息</button>
+        <div class="form-note" data-en>Note: this contact form is a placeholder and needs to be connected to an email service before going live.</div>
+        <div class="form-note" data-cn data-cn-block>提示：此联系表单为占位功能，正式上线前需接入邮件发送服务。</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>U B MARINE ELECTRICAL SDN. BHD.</h4>
+        <p style="font-size:13.5px;max-width:320px;" data-en>Marine &amp; industrial electrical engineering — MSB manufacturing, wiring and installation based in Sarawak, Malaysia.</p>
+        <p style="font-size:13.5px;max-width:320px;" data-cn data-cn-block>船舶与工业电气工程——总部位于马来西亚砂拉越，专注MSB制造、布线与安装。</p>
+      </div>
+      <div>
+        <h4 data-en>Quick Links</h4>
+        <h4 data-cn data-cn-block>快速链接</h4>
+        <ul>
+          <li><a href="#about" data-en>About</a><a href="#about" data-cn>关于我们</a></li>
+          <li><a href="#services" data-en>Services</a><a href="#services" data-cn>服务项目</a></li>
+          <li><a href="#gallery" data-en>Our Work</a><a href="#gallery" data-cn>作品展示</a></li>
+          <li><a href="#contact" data-en>Contact</a><a href="#contact" data-cn>联系我们</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en>Contact</h4>
+        <h4 data-cn data-cn-block>联系方式</h4>
+        <ul>
+          <li><a href="https://wa.me/60168799152" target="_blank" rel="noopener">+60 16-879 9152</a></li>
+          <li><a href="https://wa.me/60168869154" target="_blank" rel="noopener">+60 16-886 9154 <span data-en>(Office)</span><span data-cn>（办公室）</span></a></li>
+          <li><a href="mailto:ubest88@hotmail.com">ubest88@hotmail.com</a></li>
+          <li data-en>Sibu, Sarawak, Malaysia</li>
+          <li data-cn data-cn-block>马来西亚砂拉越诗巫</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="year"></span> U B Marine Electrical Sdn. Bhd. <span data-en>All rights reserved.</span><span data-cn>版权所有。</span></div>
+      <div data-en>Company Registration No.: 201101002699 (930837-H)</div>
+      <div data-cn data-cn-block>公司注册号：201101002699 (930837-H)</div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/60168799152" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.625.86 5.062 2.313 7.031L4 29l7.163-2.281A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm0 21.938a9.9 9.9 0 0 1-5.049-1.375l-.362-.214-4.25 1.354 1.375-4.144-.235-.375A9.9 9.9 0 0 1 6.063 15c0-5.487 4.451-9.938 9.938-9.938S25.938 9.513 25.938 15 21.487 24.938 16.001 24.938zm5.438-7.438c-.297-.148-1.757-.867-2.03-.966-.273-.099-.472-.148-.67.148-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.148-1.253-.462-2.387-1.473-.882-.787-1.478-1.76-1.652-2.057-.173-.297-.019-.457.13-.604.134-.133.297-.347.446-.52.148-.173.198-.297.297-.495.099-.198.05-.372-.025-.52-.075-.148-.67-1.614-.918-2.211-.242-.579-.489-.5-.67-.51l-.57-.01c-.198 0-.52.075-.792.372-.273.297-1.04 1.017-1.04 2.48 0 1.463 1.065 2.877 1.213 3.075.148.198 2.096 3.2 5.08 4.487.71.306 1.262.489 1.694.626.712.227 1.36.195 1.873.118.571-.085 1.757-.719 2.005-1.413.248-.694.248-1.288.173-1.413-.075-.124-.273-.198-.57-.347z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const html = document.documentElement;
+  const toggle = document.getElementById('langToggle');
+  toggle.addEventListener('click', () => {
+    const isCn = html.getAttribute('data-lang') === 'cn';
+    html.setAttribute('data-lang', isCn ? 'en' : 'cn');
+    html.setAttribute('lang', isCn ? 'en' : 'zh');
+  });
+
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mainNav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll-triggered reveal animations
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
+
+  // Active nav link highlighting based on scroll position
+  const navLinks = Array.from(mainNav.querySelectorAll('a'));
+  const sections = ['about','services','gallery','why','process','contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  if ('IntersectionObserver' in window && sections.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(sec => navObserver.observe(sec));
+  }
+</script>
+
+</body>
+</html>
