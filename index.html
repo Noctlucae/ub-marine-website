@@ -221,7 +221,7 @@
 
   /* Contact */
   .contact{background:var(--white);}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .contact-grid{display:grid;grid-template-columns:1fr;max-width:640px;margin:0 auto;}
   .contact-info-card{
     background:var(--bg);border-radius:var(--radius);padding:34px;border:1px solid #e6ebf1;
   }
@@ -254,14 +254,6 @@
     .wa-float{right:16px;bottom:16px;width:50px;height:50px;}
     .wa-float svg{width:25px;height:25px;}
   }
-  form{display:flex;flex-direction:column;gap:16px;}
-  form input, form textarea{
-    width:100%;padding:13px 16px;border:1px solid #dde4ec;border-radius:8px;font-size:14px;
-    font-family:inherit;background:var(--bg);
-  }
-  form textarea{min-height:120px;resize:vertical;}
-  form label{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:-8px;}
-  .form-note{font-size:12.5px;color:var(--muted);margin-top:4px;}
 
   footer{
     background:#081a30;color:#9db0c4;padding:44px 0 26px;
@@ -627,19 +619,15 @@
             <div class="val" data-cn data-cn-block>周一至周五：8:00–17:00<br>周六：8:00–16:30</div>
           </div>
         </div>
+        <div class="info-row">
+          <div class="ic">💬</div>
+          <div>
+            <div class="lbl" data-en>Quickest way to reach us</div><div class="lbl" data-cn data-cn-block>最快联络方式</div>
+            <div class="val" data-en>Tap a WhatsApp number or the email above — we reply directly.</div>
+            <div class="val" data-cn data-cn-block>点击上方WhatsApp号码或邮箱即可直接联络，我们会直接回复。</div>
+          </div>
+        </div>
       </div>
-      <form class="reveal reveal-2" onsubmit="event.preventDefault(); alert(document.documentElement.getAttribute('data-lang')==='cn' ? '此表单为演示用途，尚未连接发送功能。' : 'This form is a placeholder — not yet connected to send messages.');">
-        <label data-en>Name</label><label data-cn>姓名</label>
-        <input type="text" placeholder="" required>
-        <label data-en>Email</label><label data-cn>邮箱</label>
-        <input type="email" placeholder="" required>
-        <label data-en>Message</label><label data-cn>留言内容</label>
-        <textarea required></textarea>
-        <button type="submit" class="btn btn-primary" data-en>Send Message</button>
-        <button type="submit" class="btn btn-primary" data-cn>发送信息</button>
-        <div class="form-note" data-en>Note: this contact form is a placeholder and needs to be connected to an email service before going live.</div>
-        <div class="form-note" data-cn data-cn-block>提示：此联系表单为占位功能，正式上线前需接入邮件发送服务。</div>
-      </form>
     </div>
   </div>
 </section>

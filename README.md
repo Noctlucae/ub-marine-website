@@ -1,12 +1,21 @@
 # U B Marine Electrical Sdn. Bhd. — 网站文件说明
 
 ## 线上地址
-https://voluble-bavarois-d6f34c.netlify.app/
+https://thriving-puffpuff-cc23d6.netlify.app/
 （部署在你自己的Netlify账号nsyit9@gmail.com下，登录 app.netlify.com 可以看到这个站点并管理）
 
-以后每次改完网站，把这个文件夹重新打包/拖到 https://app.netlify.com/drop 上传一次就能更新线上版本（或者登录Netlify后台直接换成绑定Git仓库自动部署，需要的话告诉我）。
+## 自动部署（已设置好，2026-08-13）
+网站现在已经绑定了GitHub仓库 https://github.com/Noctlucae/ub-marine-website ，实现自动部署——**不用再手动拖zip上传了**。
 
-**这次更新还没上线**：`网站更新v2.zip` 已经打包好放在这个文件夹里，把它拖到 netlify.com/drop 就能更新成最新版本（Hero背景和About图都换成了真实MSB配电柜照片）。
+以后改完网站文件，在这个文件夹（`UB网站`）打开PowerShell，依次执行：
+```
+git add .
+git commit -m "更新说明（随便写）"
+git push
+```
+push成功后Netlify会自动检测到并重新部署，一两分钟后线上就是最新版本。
+
+旧的手动上传网址 `voluble-bavarois-d6f34c.netlify.app` 已经不用了（可以在Netlify后台删掉，或者留着不影响）。
 
 ## 文件
 - `index.html` — 单页中英双语网站，打开即用，也可直接部署到任意主机（Vercel / Netlify / 公司自有服务器 / GitHub Pages 皆可）。右上角"中文 / EN"按钮可切换语言。
@@ -35,8 +44,11 @@ https://voluble-bavarois-d6f34c.netlify.app/
 网站涵盖：公司介绍、六项核心服务（MSB主配电盘制造、船舶电气安装、AutoCAD电路设计、CNC钣金加工、测试调试、维护维修）、四项优势、四步工作流程、联系表单。这些服务项目是根据"主配电盘制造 + 船舶电气 + CNC/AutoCAD"这一行业组合起草的，如与实际业务范围不符，请告诉我需要增删的项目。
 
 ## 尚未实现的功能
-- 联系表单目前只是弹窗提示，**未连接真实的邮件发送服务**（例如 Formspree、EmailJS 或后端API）。正式上线前需要接入。
-- 目前用的是Netlify给的随机域名（voluble-bavarois-d6f34c.netlify.app），如果要换成自己的域名（比如ubmarineelectrical.com），登录Netlify后台可以绑定，或告诉我你买的域名我帮你弄。
+- 目前用的是Netlify给的随机域名（thriving-puffpuff-cc23d6.netlify.app），如果要换成自己的域名（比如ubmarineelectrical.com），登录Netlify后台可以绑定，或告诉我你买的域名我帮你弄。
+
+## 更新记录（2026-08-13）
+- 联系表单（Name/Email/Message输入框）已整体移除——原本没接真实发信功能，怕访客误以为发出去了却收不到。改成一行"最快联络方式"提示，引导访客直接点WhatsApp或邮箱联络，这两个都是真实可用的联络方式。
+- 联系区块改为单栏居中布局（原本是左右两栏，右栏是表单）。
 
 ## 自查记录
 交付前做了一次代码审核，修复了以下问题：
