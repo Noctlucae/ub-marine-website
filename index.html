@@ -179,7 +179,10 @@
   }
 
   /* Gallery */
-  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .gallery-item.gallery-featured{grid-row:span 2;height:480px;}
+  .gallery-featured img{object-position:center;}
+  @media(max-width:900px){.gallery-item.gallery-featured{grid-row:auto;height:360px;}}
   .gallery-item{
     position:relative;border-radius:var(--radius);overflow:hidden;height:230px;
     box-shadow:0 10px 26px rgba(11,35,64,.12);
@@ -462,6 +465,10 @@
       <p data-cn data-cn-block>近距离看我们的制造、接线与安装工作。</p>
     </div>
     <div class="gallery-grid">
+      <figure class="gallery-item gallery-featured reveal reveal-1">
+        <img src="assets/gallery-laser-cutting.jpg" alt="CNC laser cutting of sheet metal panels at U B Marine Electrical" loading="lazy" width="1086" height="1448">
+        <figcaption><span data-en>CNC Laser Cutting</span><span data-cn>CNC 激光切割</span></figcaption>
+      </figure>
       <figure class="gallery-item reveal reveal-1">
         <img src="assets/gallery-wiring-1.jpg" alt="Neatly labelled MSB internal wiring by U B Marine Electrical" loading="lazy">
         <figcaption><span data-en>MSB Internal Wiring</span><span data-cn>MSB内部接线</span></figcaption>
