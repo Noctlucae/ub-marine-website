@@ -119,12 +119,7 @@
   .section-head p{color:var(--muted);font-size:15px;}
 
   /* About */
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
-  .about-img{
-    border-radius:var(--radius);height:440px;overflow:hidden;
-    box-shadow:0 16px 40px rgba(11,35,64,.18);
-  }
-  .about-img img{width:100%;height:100%;object-fit:cover;object-position:center 25%;}
+  .about-grid{max-width:860px;}
   .about-text h3{font-size:22px;color:var(--navy);margin-bottom:14px;font-weight:700;}
   .about-text p{color:var(--muted);margin-bottom:14px;font-size:15px;}
   .check-list{margin-top:20px;}
@@ -367,9 +362,6 @@
 
 <section id="about">
   <div class="container about-grid">
-    <div class="about-img reveal">
-      <img src="assets/about-msb.jpg" alt="Main switchboard (MSB) panels manufactured by U B Marine Electrical Sdn. Bhd." loading="lazy">
-    </div>
     <div class="about-text reveal reveal-2">
       <div class="eyebrow" data-en>ABOUT US</div>
       <div class="eyebrow" data-cn data-cn-block>关于我们</div>
