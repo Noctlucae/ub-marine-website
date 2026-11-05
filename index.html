@@ -499,6 +499,7 @@
     .carousel-position{bottom:16px;gap:10px;}.carousel-dots{gap:0;}.carousel-dot{width:23px;}
   }
   .photo-description{font-size:14px;line-height:1.6;color:#c4d2e1;margin-top:6px;}
+.wa-contacts{position:fixed;right:22px;bottom:90px;width:min(300px,calc(100vw - 32px));padding:20px;background:white;color:var(--navy);border-radius:14px;box-shadow:0 8px 35px rgba(11,35,64,.2);z-index:301;border:1px solid #e2e8ee;}.wa-contacts[hidden]{display:none}.wa-contacts strong{display:block;font-size:15px;margin-bottom:12px}.wa-contacts a{display:block;padding:12px;border-radius:8px;color:var(--navy);text-decoration:none}.wa-contacts a:hover,.wa-contacts a:focus-visible{background:#edf9f1}.wa-contacts small{display:block;color:var(--muted);margin-top:3px}.wa-contacts a:focus-visible{outline:2px solid #168540}@media(max-width:520px){.wa-contacts{right:16px;bottom:78px}}
 </style>
 </head>
 <body>
@@ -836,9 +837,10 @@
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/60168799152" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<div id="waContacts" class="wa-contacts" hidden role="region" aria-labelledby="waContactsTitle"><strong id="waContactsTitle"><span data-en>Who would you like to contact?</span><span data-cn>请选择联系对象</span></strong><a href="https://wa.me/60168799152" target="_blank" rel="noopener"><span>Yit Nai Soon</span><small>+60 16-879 9152</small></a><a href="https://wa.me/60168869154" target="_blank" rel="noopener"><span data-en>Office</span><span data-cn>办公室</span><small>+60 16-886 9154</small></a></div>
+<button type="button" class="wa-float" aria-label="Choose a WhatsApp contact" aria-expanded="false" aria-controls="waContacts" style="border:0;cursor:pointer">
   <svg viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.625.86 5.062 2.313 7.031L4 29l7.163-2.281A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm0 21.938a9.9 9.9 0 0 1-5.049-1.375l-.362-.214-4.25 1.354 1.375-4.144-.235-.375A9.9 9.9 0 0 1 6.063 15c0-5.487 4.451-9.938 9.938-9.938S25.938 9.513 25.938 15 21.487 24.938 16.001 24.938zm5.438-7.438c-.297-.148-1.757-.867-2.03-.966-.273-.099-.472-.148-.67.148-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.148-1.253-.462-2.387-1.473-.882-.787-1.478-1.76-1.652-2.057-.173-.297-.019-.457.13-.604.134-.133.297-.347.446-.52.148-.173.198-.297.297-.495.099-.198.05-.372-.025-.52-.075-.148-.67-1.614-.918-2.211-.242-.579-.489-.5-.67-.51l-.57-.01c-.198 0-.52.075-.792.372-.273.297-1.04 1.017-1.04 2.48 0 1.463 1.065 2.877 1.213 3.075.148.198 2.096 3.2 5.08 4.487.71.306 1.262.489 1.694.626.712.227 1.36.195 1.873.118.571-.085 1.757-.719 2.005-1.413.248-.694.248-1.288.173-1.413-.075-.124-.273-.198-.57-.347z"/></svg>
-</a>
+</button>
 
 <dialog id="photoViewer" aria-labelledby="photoTitle" aria-describedby="photoDescription"><button type="button" id="photoClose" class="photo-close" aria-label="Close photo">×</button><figure><img id="photoFull" alt=""><figcaption><span id="photoTitle"></span><p id="photoDescription" class="photo-description"></p></figcaption></figure></dialog>
 <script>
@@ -863,7 +865,7 @@
     menuToggle.setAttribute('aria-label', cn ? '打开导航菜单' : 'Open navigation');
     document.getElementById('photoClose').setAttribute('aria-label', cn ? '关闭照片' : 'Close photo');
     document.querySelector('.skip-link').textContent = cn ? '跳到主要内容' : 'Skip to content';
-    document.querySelector('.wa-float').setAttribute('aria-label', cn ? '通过 WhatsApp 联系' : 'Chat on WhatsApp');
+    document.querySelector('.wa-float').setAttribute('aria-label', cn ? '选择 WhatsApp 联系人' : 'Choose a WhatsApp contact');
     document.querySelectorAll('[data-quote-en]').forEach(option => { option.textContent = option.getAttribute(cn ? 'data-quote-cn' : 'data-quote-en'); });
     const quoteLanguage = document.getElementById('quoteLanguage'); if (quoteLanguage) quoteLanguage.value = cn ? 'zh' : 'en';
     if (typeof renderQuoteStatus === 'function') renderQuoteStatus();
@@ -991,7 +993,7 @@
   } else { galleryInView = true; }
   window.setInterval(() => {
     if (!reduceMotion.matches && !galleryHovered && !galleryKeyboardFocus && Date.now() >= galleryResumeAt && galleryInView && !document.hidden && !viewer.open) goToGallery(galleryIndex + 1);
-  }, 6500);
+  }, 5000);
   const galleryResize = new ResizeObserver(() => { galleryWidth = galleryTrack.clientWidth; galleryTrack.scrollTo({left:galleryIndex * galleryWidth,behavior:'instant'}); });
   galleryResize.observe(galleryTrack);
   html.dataset.carouselReady = 'true';
@@ -1038,5 +1040,8 @@
 
 </script>
 
+<script>
+(function(){const trigger=document.querySelector('.wa-float');const panel=document.getElementById('waContacts');function close(){panel.hidden=true;trigger.setAttribute('aria-expanded','false');}trigger.addEventListener('click',function(){panel.hidden=!panel.hidden;trigger.setAttribute('aria-expanded',String(!panel.hidden));});document.addEventListener('click',function(event){if(!panel.contains(event.target)&&!trigger.contains(event.target))close();});document.addEventListener('keydown',function(event){if(event.key==='Escape'&&!panel.hidden){close();trigger.focus();}});panel.addEventListener('click',function(event){if(event.target.closest('a'))close();});})();
+</script>
 </body>
 </html>
