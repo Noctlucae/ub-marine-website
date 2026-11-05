@@ -1,0 +1,3 @@
+# Route the default hosting address to the company domain, preserving paths.
+https://thriving-puffpuff-cc23d6.netlify.app/* https://ubmarine.com.my/:splat 301!
+http://thriving-puffpuff-cc23d6.netlify.app/* https://ubmarine.com.my/:splat 301!
