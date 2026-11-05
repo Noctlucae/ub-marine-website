@@ -467,31 +467,34 @@
     .gallery-item.reveal,.about-photo.reveal{opacity:1!important;transform:none!important;transition:none!important;}
   }
   /* One compact, swipeable showcase instead of a multi-row photo grid. */
-  .gallery-carousel{max-width:960px;margin:auto;}
-  .gallery-carousel .carousel-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:14px;overscroll-behavior-x:contain;}
+  .gallery-carousel{max-width:1140px;margin:auto;}
+  .carousel-stage{position:relative;isolation:isolate;border-radius:14px;overflow:hidden;background:var(--navy);}
+  .gallery-carousel .carousel-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;}
   .carousel-track::-webkit-scrollbar{display:none;}
-  .gallery-carousel .gallery-item{flex:0 0 100%;min-width:0;aspect-ratio:16/9;margin:0;scroll-snap-align:start;scroll-snap-stop:always;}
+  .gallery-carousel .gallery-item{flex:0 0 100%;min-width:0;aspect-ratio:16/9;margin:0;scroll-snap-align:start;scroll-snap-stop:always;border-radius:0;}
   .gallery-carousel .gallery-item img{object-position:center;}
-  .carousel-stage{position:relative;}
   .gallery-carousel .gallery-item figcaption{display:none;}
-  .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:46px;height:46px;border:1px solid rgba(255,255,255,.5);border-radius:50%;color:white;background:rgba(8,26,48,.55);box-shadow:0 2px 12px rgba(0,0,0,.12);font-size:24px;cursor:pointer;backdrop-filter:blur(5px);transition:background .2s;}
-  .carousel-prev{left:18px;}.carousel-next{right:18px;}
-  .carousel-arrow:hover{background:rgba(8,26,48,.85);}
-  .carousel-arrow:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
-  .carousel-details{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;padding:22px 2px 0;}
-  .carousel-caption{max-width:700px;min-width:0;}
-  .carousel-caption h3{color:var(--navy);font-size:20px;line-height:1.4;margin:0 0 7px;}
-  .carousel-caption p{color:var(--muted);font-size:14px;line-height:1.7;margin:0;}
-  .carousel-position{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:9px;padding-top:5px;}
-  .carousel-dots{display:flex;gap:6px;}
-  .carousel-dot{height:6px;width:6px;border-radius:50%;background:#c6d0da;transition:background .3s;}
-  .carousel-dot.active{background:var(--navy);}
-  .carousel-count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .carousel-stage::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(5,21,38,.18),rgba(5,21,38,.47) 45%,rgba(5,21,38,.48) 70%,rgba(5,21,38,.42));}
+  .carousel-details{position:absolute;inset:0;z-index:2;pointer-events:none;color:white;}
+  .carousel-caption{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:54px 96px 74px;}
+  .carousel-caption h3{font-size:clamp(30px,4.2vw,52px);font-weight:600;letter-spacing:-.025em;line-height:1.2;margin:0 0 20px;color:white;text-shadow:0 2px 18px rgba(0,0,0,.2);}
+  .carousel-caption p{max-width:720px;font-size:clamp(15px,1.55vw,18px);line-height:1.75;margin:0;color:#f1f4f7;text-wrap:pretty;text-shadow:0 1px 10px rgba(0,0,0,.3);}
+  .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:64px;border:0;border-radius:6px;color:white;background:transparent;cursor:pointer;opacity:.8;transition:opacity .2s,background .2s;}
+  .carousel-arrow svg{display:block;width:27px;height:27px;margin:auto;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .carousel-prev{left:12px;}.carousel-next{right:12px;}
+  .carousel-arrow:hover{opacity:1;background:rgba(5,21,38,.18);}
+  .carousel-arrow:focus-visible,.carousel-dot:focus-visible{outline:2px solid white;outline-offset:2px;}
+  .carousel-position{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:15px;pointer-events:auto;}
+  .carousel-dots{display:flex;align-items:center;gap:3px;}
+  .carousel-dot{position:relative;width:24px;height:28px;padding:0;border:0;background:transparent;cursor:pointer;}
+  .carousel-dot::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(255,255,255,.75);top:50%;left:50%;transform:translate(-50%,-50%);transition:background .3s;}
+  .carousel-dot.active::after{background:white;border-color:white;}
+  .carousel-count{font-size:11px;color:rgba(255,255,255,.8);font-variant-numeric:tabular-nums;white-space:nowrap;}
   @media(max-width:600px){
-    .gallery-carousel .gallery-item{aspect-ratio:4/3;}
-    .carousel-arrow{width:40px;height:40px;font-size:22px;}.carousel-prev{left:12px;}.carousel-next{right:12px;}
-    .carousel-details{gap:16px;padding-top:17px;}.carousel-caption h3{font-size:18px;}.carousel-caption p{font-size:13px;}
-    .carousel-dots{gap:4px;}.carousel-dot{height:5px;width:5px;}
+    .gallery-carousel .gallery-item{aspect-ratio:1/1;min-height:330px;}
+    .carousel-caption{padding:48px 43px 64px;}.carousel-caption h3{font-size:29px;line-height:1.25;margin-bottom:15px;}.carousel-caption p{font-size:14px;line-height:1.65;}
+    .carousel-arrow{width:35px;height:54px;}.carousel-arrow svg{width:21px;height:21px;}.carousel-prev{left:3px;}.carousel-next{right:3px;}
+    .carousel-position{bottom:16px;gap:10px;}.carousel-dots{gap:0;}.carousel-dot{width:23px;}
   }
   .photo-description{font-size:14px;line-height:1.6;color:#c4d2e1;margin-top:6px;}
 </style>
@@ -646,35 +649,35 @@
     </div>
     <div class="gallery-carousel reveal" role="region" aria-roledescription="carousel" aria-label="Workshop photographs">
       <div class="carousel-stage">
-      <div class="gallery-grid carousel-track" id="galleryTrack">
+        <div class="gallery-grid carousel-track" id="galleryTrack">
 <figure class="gallery-item">
         <img src="assets/gallery-laser-cutting.jpg" alt="CNC laser cutting of sheet metal panels at U B Marine Electrical" loading="lazy" width="1086" height="1448">
-        <figcaption data-description-en="Laser cutting openings in sheet metal for panel fabrication." data-description-cn="为盘柜制作进行钣金开孔激光切割。"><span data-en>CNC Laser Cutting</span><span data-cn>CNC 激光切割</span></figcaption>
+        <figcaption data-description-en="We cut openings in sheet metal for meters, switches and control devices, turning the panel design into parts ready for fabrication and assembly." data-description-cn="按盘柜设计，在钣金上切出仪表、开关与控制元件的安装孔，为后续加工和装配做好准备。"><span data-en>CNC Laser Cutting</span><span data-cn>CNC 激光切割</span></figcaption>
       </figure>
-<figure class="gallery-item"><img src="assets/hero-msb.jpg" alt="Completed main switchboard at U B Marine Electrical" loading="lazy" width="1280" height="960"><figcaption data-description-en="Switchboard enclosures, metering and controls shown together in our workshop." data-description-cn="车间内的配电柜、仪表与控制装置整体展示。"><span data-en>Main Switchboard</span><span data-cn>主配电盘成品</span></figcaption></figure>
+<figure class="gallery-item"><img src="assets/hero-msb.jpg" alt="Completed main switchboard at U B Marine Electrical" loading="lazy" width="1280" height="960"><figcaption data-description-en="A main switchboard brings incoming power, circuit protection and outgoing supplies together, distributing electricity to the equipment that needs it." data-description-cn="主配电盘将进线电源、保护装置与各路出线集中在一起，把电力分配到需要使用的设备。"><span data-en>Main Switchboard</span><span data-cn>主配电盘成品</span></figcaption></figure>
 <figure class="gallery-item">
         <img src="assets/gallery-msb-interior.webp" data-full="assets/gallery-msb-interior-full.jpg" alt="Open switchboard cabinets showing component layout and internal wiring in the U B Marine workshop" loading="lazy" width="960" height="720">
-        <figcaption data-description-en="Open cabinet view showing component layout and internal wiring during workshop assembly." data-description-cn="车间装配阶段的开柜展示，呈现元件布局与内部配线。"><span data-en>Switchboard Interior</span><span data-cn>配电柜内部总览</span></figcaption>
+        <figcaption data-description-en="Inside the cabinet, breakers, contactors and terminals are arranged to support organized wiring and access for future inspection and maintenance." data-description-cn="柜内的断路器、接触器和端子有序排列，方便配线，也为日后的检查与维护留出操作空间。"><span data-en>Switchboard Interior</span><span data-cn>配电柜内部总览</span></figcaption>
       </figure>
 <figure class="gallery-item">
         <img src="assets/gallery-wiring-1.jpg" alt="Neatly labelled MSB internal wiring by U B Marine Electrical" loading="lazy" width="900" height="600">
-        <figcaption data-description-en="A closer look at wiring, terminals and component labels inside the panel." data-description-cn="近距离查看盘内配线、端子与元件标识。"><span data-en>MSB Internal Wiring</span><span data-cn>MSB内部接线</span></figcaption>
+        <figcaption data-description-en="Labelled wiring and organized terminals help technicians trace circuits when checking, servicing or troubleshooting the switchboard." data-description-cn="清楚的线路标识与整齐的端子配线，让技术人员在检查、保养或排查故障时更容易找到对应回路。"><span data-en>MSB Internal Wiring</span><span data-cn>MSB内部接线</span></figcaption>
       </figure>
 <figure class="gallery-item">
         <img src="assets/gallery-workshop.jpg" alt="Workshop Assembly at U B Marine Electrical" loading="lazy" width="1448" height="1086">
-        <figcaption data-description-en="Our team working on the internal installation of a switchboard." data-description-cn="团队进行配电柜内部安装与装配作业。"><span data-en>Workshop Assembly</span><span data-cn>车间装配作业</span></figcaption>
+        <figcaption data-description-en="Our workshop team fits components, routes wiring and assembles the cabinet, bringing the design together before testing and installation." data-description-cn="车间团队安装元件、布设线路并组装盘柜，把设计逐步做成实物，再进入测试与安装阶段。"><span data-en>Workshop Assembly</span><span data-cn>车间装配作业</span></figcaption>
       </figure>
 <figure class="gallery-item">
         <img src="assets/gallery-instruments.jpg" alt="Instruments & Controls at U B Marine Electrical" loading="lazy" width="1086" height="1448">
-        <figcaption data-description-en="Analogue meters and selector switches on the switchboard front." data-description-cn="配电柜正面的指针仪表与选择开关。"><span data-en>Instruments & Controls</span><span data-cn>仪表与控制开关</span></figcaption>
+        <figcaption data-description-en="Panel meters show electrical readings, while selector switches let operators choose the required functions and check the system in use." data-description-cn="面板仪表用于查看电气读数，选择开关用于切换所需功能，帮助操作人员了解和操作正在使用的系统。"><span data-en>Instruments & Controls</span><span data-cn>仪表与控制开关</span></figcaption>
       </figure>
-      </div>
-        <button type="button" class="carousel-arrow carousel-prev" id="galleryPrev" aria-label="Previous photo">←</button>
-        <button type="button" class="carousel-arrow carousel-next" id="galleryNext" aria-label="Next photo">→</button>
-      </div>
-      <div class="carousel-details">
-        <div class="carousel-caption"><h3 id="galleryCaptionTitle"></h3><p id="galleryCaptionDescription"></p></div>
-        <div class="carousel-position"><div class="carousel-dots" aria-hidden="true"><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div><span class="carousel-count" id="galleryCount">1 / 6</span></div>
+        </div>
+        <button type="button" class="carousel-arrow carousel-prev" id="galleryPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg></button>
+        <button type="button" class="carousel-arrow carousel-next" id="galleryNext" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg></button>
+        <div class="carousel-details">
+          <div class="carousel-caption"><h3 id="galleryCaptionTitle"></h3><p id="galleryCaptionDescription"></p></div>
+          <div class="carousel-position"><div class="carousel-dots"><button type="button" class="carousel-dot" aria-label="Show photo 1" aria-pressed="false"></button><button type="button" class="carousel-dot" aria-label="Show photo 2" aria-pressed="false"></button><button type="button" class="carousel-dot" aria-label="Show photo 3" aria-pressed="false"></button><button type="button" class="carousel-dot" aria-label="Show photo 4" aria-pressed="false"></button><button type="button" class="carousel-dot" aria-label="Show photo 5" aria-pressed="false"></button><button type="button" class="carousel-dot" aria-label="Show photo 6" aria-pressed="false"></button></div><span class="carousel-count" id="galleryCount">1 / 6</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -931,6 +934,10 @@
     document.getElementById('galleryPrev').setAttribute('aria-label', cn ? '上一张照片' : 'Previous photo');
     document.getElementById('galleryNext').setAttribute('aria-label', cn ? '下一张照片' : 'Next photo');
     carousel.setAttribute('aria-label', cn ? '车间照片轮播' : 'Workshop photographs');
+    document.querySelectorAll('.carousel-dot').forEach((dot,i) => {
+      const title = gallerySlides[i].querySelector(cn ? '[data-cn]' : '[data-en]').textContent;
+      dot.setAttribute('aria-label', (cn ? '查看照片 ' : 'Show photo ') + (i+1) + ': ' + title);
+    });
     renderGalleryCaption();
   }
   function renderGalleryCaption() {
@@ -939,7 +946,7 @@
     document.getElementById('galleryCaptionTitle').textContent = caption.querySelector(cn ? '[data-cn]' : '[data-en]').textContent;
     document.getElementById('galleryCaptionDescription').textContent = caption.getAttribute(cn ? 'data-description-cn' : 'data-description-en') || '';
     document.getElementById('galleryCount').textContent = (galleryIndex + 1) + ' / ' + gallerySlides.length;
-    document.querySelectorAll('.carousel-dot').forEach((dot,i) => dot.classList.toggle('active',i === galleryIndex));
+    document.querySelectorAll('.carousel-dot').forEach((dot,i) => { dot.classList.toggle('active',i === galleryIndex); dot.setAttribute('aria-pressed',String(i === galleryIndex)); });
   }
   function updateGalleryIndex() {
     if (Math.abs(galleryTrack.clientWidth - galleryWidth) > 1) return;
@@ -957,6 +964,7 @@
   }
   document.getElementById('galleryPrev').addEventListener('click', () => goToGallery(galleryIndex - 1, true));
   document.getElementById('galleryNext').addEventListener('click', () => goToGallery(galleryIndex + 1, true));
+  document.querySelectorAll('.carousel-dot').forEach((dot,i) => dot.addEventListener('click', () => goToGallery(i,true)));
   galleryTrack.addEventListener('scroll', updateGalleryIndex, {passive:true});
   galleryTrack.addEventListener('pointerdown', () => { galleryResumeAt = Date.now() + 8000; }, {passive:true});
   galleryTrack.addEventListener('keydown', event => {
@@ -976,7 +984,7 @@
   } else { galleryInView = true; }
   window.setInterval(() => {
     if (!reduceMotion.matches && !galleryHovered && !galleryKeyboardFocus && Date.now() >= galleryResumeAt && galleryInView && !document.hidden && !viewer.open) goToGallery(galleryIndex + 1);
-  }, 5000);
+  }, 6500);
   const galleryResize = new ResizeObserver(() => { galleryWidth = galleryTrack.clientWidth; galleryTrack.scrollTo({left:galleryIndex * galleryWidth,behavior:'instant'}); });
   galleryResize.observe(galleryTrack);
   html.dataset.carouselReady = 'true';
