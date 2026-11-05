@@ -415,6 +415,26 @@
     .reveal.will-reveal:not(.visible){opacity:1;transform:none;}
   }
 
+
+  .quote-section{background:#eef3f7;scroll-margin-top:10px;}
+  .quote-form{max-width:800px;margin:auto;background:white;border:1px solid #dce4ec;border-radius:18px;padding:32px;}
+  .quote-fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;}
+  .quote-fields label{display:block;min-width:0;font-size:14px;font-weight:600;color:var(--navy);}
+  .quote-fields input,.quote-fields select,.quote-fields textarea{display:block;width:100%;min-width:0;min-height:46px;margin-top:7px;border:1px solid #bdcbd8;border-radius:8px;background:#fff;padding:11px 12px;font:inherit;font-weight:400;color:var(--text);}
+  .quote-fields input:focus,.quote-fields select:focus,.quote-fields textarea:focus{outline:2px solid #0e7c86;outline-offset:1px;}
+  .quote-fields textarea{resize:vertical;}
+  .quote-fields input[type=file]{font-size:12px;padding:9px;}
+  .quote-fields input[type=file]::file-selector-button{border:0;border-radius:5px;background:#e6eef4;padding:7px 10px;margin-right:8px;color:var(--navy);}
+  .quote-wide{grid-column:1/-1;}
+  .quote-trap{display:none;}
+  .quote-help{margin-top:16px;font-size:12px;line-height:1.7;color:var(--muted);}
+  .quote-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:24px;}
+  .quote-actions .btn{border:0;min-height:48px;}
+  .quote-whatsapp{font-size:13px;font-weight:600;color:var(--accent-2);}
+  #quoteStatus:not([hidden]){margin-top:20px;padding:14px;border-radius:8px;background:#edf7f2;color:#17613f;font-size:14px;}
+  #quoteStatus[data-state=error]{background:#fff1f0;color:#a22525;}
+  #quoteSubmit:disabled{opacity:.65;cursor:wait;transform:none;}
+  @media(max-width:520px){.quote-form{padding:22px 18px;}.quote-fields{grid-template-columns:minmax(0,1fr);gap:16px;}.quote-actions{align-items:stretch;flex-direction:column;}.quote-actions .btn{width:100%;}}
 </style>
 </head>
 <body>
@@ -453,8 +473,8 @@
     <p class="sub" data-en>We design, build, wire and install switchboards for marine and industrial projects. From drawings to commissioning, our team handles the work in-house.</p>
     <p class="sub" data-cn data-cn-block>专注船舶与工业主配电盘设计、制造、配线与安装。从图纸到现场调试，由我们的团队一手完成。</p>
     <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary" data-en>Request a Quote</a>
-      <a href="#contact" class="btn btn-primary" data-cn>获取报价</a>
+      <a href="#quote" class="btn btn-primary" data-en>Request a Quote</a>
+      <a href="#quote" class="btn btn-primary" data-cn>获取报价</a>
       <a href="#services" class="btn btn-outline" data-en>Our Services</a>
       <a href="#services" class="btn btn-outline" data-cn>查看服务</a>
     </div>
@@ -603,6 +623,45 @@
   </div>
 </section>
 
+
+<section id="quote" class="quote-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-en>LET’S DISCUSS YOUR PROJECT</div><div class="eyebrow" data-cn data-cn-block>告诉我们您的项目需求</div>
+      <h2 data-en>Request a Quote</h2><h2 data-cn data-cn-block>获取报价</h2>
+      <p data-en>Share a few details. Our team will get in touch to discuss your requirements.</p><p data-cn data-cn-block>简单填写项目需求，我们会尽快联系您，进一步了解详情。</p>
+    </div>
+    <form id="quoteForm" name="quote-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" action="/quote-thanks.html" class="quote-form">
+      <input type="hidden" name="form-name" value="quote-request">
+      <input type="hidden" name="subject" value="New quote request — U B Marine Electrical">
+      <input type="hidden" name="language" id="quoteLanguage" value="en">
+      <p class="quote-trap" aria-hidden="true"><label>Leave this empty<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="quote-fields">
+        <label><span data-en>Name *</span><span data-cn>姓名 *</span><input name="name" autocomplete="name" required maxlength="100"></label>
+        <label><span data-en>Company *</span><span data-cn>公司名称 *</span><input name="company" autocomplete="organization" required maxlength="160"></label>
+        <label><span data-en>Phone / WhatsApp *</span><span data-cn>电话 / WhatsApp *</span><input name="phone" type="tel" autocomplete="tel" required maxlength="40"></label>
+        <label><span data-en>Email *</span><span data-cn>邮箱 *</span><input name="email" type="email" autocomplete="email" required maxlength="254"></label>
+        <label class="quote-wide"><span data-en>Service required *</span><span data-cn>需要的服务 *</span><select name="service" required>
+          <option value="" data-quote-en="Select a service" data-quote-cn="请选择服务">Select a service</option>
+          <option value="Main switchboard" data-quote-en="Main switchboard (MSB)" data-quote-cn="主配电盘（MSB）">Main switchboard (MSB)</option>
+          <option value="Synchronizing switchboard" data-quote-en="Generator synchronizing switchboard" data-quote-cn="发电机同步配电盘">Generator synchronizing switchboard</option>
+          <option value="Marine installation" data-quote-en="Marine electrical installation" data-quote-cn="船舶电气安装">Marine electrical installation</option>
+          <option value="Design and fabrication" data-quote-en="Design / panel fabrication" data-quote-cn="设计 / 盘柜制造">Design / panel fabrication</option>
+          <option value="Maintenance and repair" data-quote-en="Maintenance / repair" data-quote-cn="维护 / 维修">Maintenance / repair</option>
+          <option value="Other" data-quote-en="Other enquiry" data-quote-cn="其他咨询">Other enquiry</option>
+        </select></label>
+        <label class="quote-wide"><span data-en>Project details *</span><span data-cn>项目说明 *</span><textarea name="message" required rows="5" maxlength="5000"></textarea></label>
+        <label><span data-en>Drawing (optional)</span><span data-cn>图纸（选填）</span><input name="drawing" type="file" accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png,.webp" aria-describedby="quoteFileHelp"></label>
+        <label><span data-en>Photo (optional)</span><span data-cn>照片（选填）</span><input name="photo" type="file" accept=".jpg,.jpeg,.png,.webp,.heic,.heif" aria-describedby="quoteFileHelp"></label>
+      </div>
+      <p class="quote-help" id="quoteFileHelp"><span data-en>Up to 2 files: maximum 5 MB each and 7 MB combined. For larger files, please contact us on WhatsApp.</span><span data-cn>最多 2 个文件：单个不超过 5 MB，合计不超过 7 MB。较大文件请通过 WhatsApp 联系我们。</span></p>
+      <p class="quote-help"><span data-en>Your contact details and attachments will be used to respond to this enquiry.</span><span data-cn>您的联系方式及附件将用于处理与回复本次询价。</span></p>
+      <p id="quoteStatus" role="status" aria-live="polite" tabindex="-1" hidden></p>
+      <div class="quote-actions"><button type="submit" class="btn btn-primary" id="quoteSubmit"><span data-en>Send enquiry</span><span data-cn>提交询价</span></button><a href="https://wa.me/60168799152" target="_blank" rel="noopener" class="quote-whatsapp"><span data-en>Prefer to chat? WhatsApp us →</span><span data-cn>想直接沟通？通过 WhatsApp 联系 →</span></a></div>
+    </form>
+  </div>
+</section>
+
 <section id="contact" class="contact">
   <div class="container">
     <div class="section-head reveal">
@@ -732,6 +791,9 @@
     document.getElementById('photoClose').setAttribute('aria-label', cn ? '关闭照片' : 'Close photo');
     document.querySelector('.skip-link').textContent = cn ? '跳到主要内容' : 'Skip to content';
     document.querySelector('.wa-float').setAttribute('aria-label', cn ? '通过 WhatsApp 联系' : 'Chat on WhatsApp');
+    document.querySelectorAll('[data-quote-en]').forEach(option => { option.textContent = option.getAttribute(cn ? 'data-quote-cn' : 'data-quote-en'); });
+    const quoteLanguage = document.getElementById('quoteLanguage'); if (quoteLanguage) quoteLanguage.value = cn ? 'zh' : 'en';
+    if (typeof renderQuoteStatus === 'function') renderQuoteStatus();
     if (selectedPhoto) photoTitle.textContent = selectedPhoto.querySelector(cn ? '[data-cn]' : '[data-en]').textContent;
     document.querySelectorAll('.gallery-item button').forEach(button => {
       const caption = button.closest('figure').querySelector(cn ? '[data-cn]' : '[data-en]').textContent;
@@ -780,6 +842,46 @@
     viewer.addEventListener('click', e => { if (e.target === viewer) viewer.close(); });
     viewer.addEventListener('close', () => { document.body.classList.remove('photo-viewing'); document.getElementById('photoFull').removeAttribute('src'); selectedPhoto = null; });
   }
+
+  var quoteState = '';
+  const quoteForm = document.getElementById('quoteForm');
+  const quoteButton = document.getElementById('quoteSubmit');
+  function renderQuoteStatus() {
+    const status = document.getElementById('quoteStatus');
+    const state = quoteState || ''; const cn = html.dataset.lang === 'cn';
+    const words = {
+      sending: ['Sending your enquiry…', '正在提交询价…'],
+      sent: ['Your enquiry has been submitted. Thank you — our team will contact you soon.', '询价已提交。感谢您的联系，我们的团队会尽快回复您。'],
+      error: ['We could not confirm your enquiry. Your details have been kept. Please retry or contact us on WhatsApp.', '暂时无法确认询价是否提交成功，填写内容已保留。请重试或通过 WhatsApp 联系我们。'],
+      size: ['Files must be no larger than 5 MB each and 7 MB combined.', '单个文件不能超过 5 MB，所有文件合计不能超过 7 MB。'],
+      type: ['Please choose a PDF, DWG, DXF or supported photo file.', '请选择 PDF、DWG、DXF 或支持的照片文件。']
+    };
+    status.hidden = !state; status.dataset.state = ['error','size','type'].includes(state) ? 'error' : state;
+    status.textContent = state ? words[state][cn ? 1 : 0] : '';
+  }
+  quoteForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (quoteButton.disabled || !quoteForm.reportValidity()) return;
+    const files = ['drawing','photo'].map(name => quoteForm.elements[name].files[0]).filter(Boolean);
+    if (files.some(f => f.size > 5*1024*1024) || files.reduce((n,f) => n+f.size,0) > 7*1024*1024) {
+      quoteState = 'size'; renderQuoteStatus(); document.getElementById('quoteStatus').focus(); return;
+    }
+    if (files.some(f => !/\.(pdf|dwg|dxf|jpg|jpeg|png|webp|heic|heif)$/i.test(f.name))) {
+      quoteState = 'type'; renderQuoteStatus(); document.getElementById('quoteStatus').focus(); return;
+    }
+    quoteButton.disabled = true; quoteForm.setAttribute('aria-busy','true'); quoteState = 'sending'; renderQuoteStatus();
+    const payload = new FormData(quoteForm);
+    // Netlify processes this static form after form detection is enabled.
+    // Never clear user input until the service has accepted the submission.
+    try {
+      const response = await fetch('/', {method:'POST',body:payload});
+      if (!response.ok) throw new Error('Submission not accepted');
+      quoteForm.reset(); document.getElementById('quoteLanguage').value = html.dataset.lang === 'cn' ? 'zh' : 'en';
+      quoteState = 'sent';
+    } catch { quoteState = 'error'; }
+    finally { quoteButton.disabled = false; quoteForm.removeAttribute('aria-busy'); renderQuoteStatus(); document.getElementById('quoteStatus').focus(); }
+  });
+
 </script>
 
 </body>
