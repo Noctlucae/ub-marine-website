@@ -447,6 +447,25 @@
   #quoteStatus[data-state=error]{background:#fff1f0;color:#a22525;}
   #quoteSubmit:disabled{opacity:.65;cursor:wait;transform:none;}
   @media(max-width:520px){.quote-form{padding:22px 18px;}.quote-fields{grid-template-columns:minmax(0,1fr);gap:16px;}.quote-actions{align-items:stretch;flex-direction:column;}.quote-actions .btn{width:100%;}}
+  /* A restrained, one-time entrance for workshop and gallery photographs. */
+  .gallery-item.reveal,.about-photo.reveal{
+    --photo-delay:0s;
+    transition:opacity 1.05s ease,transform 1.05s cubic-bezier(.22,1,.36,1);
+    transition-delay:var(--photo-delay);
+  }
+  .gallery-item.reveal.will-reveal:not(.visible),.about-photo.reveal.will-reveal:not(.visible){
+    opacity:0;transform:translateY(26px);
+  }
+  .gallery-item:nth-child(3n+2){--photo-delay:.12s;}
+  .gallery-item:nth-child(3n){--photo-delay:.24s;}
+  @media(max-width:900px){
+    .gallery-item:nth-child(n){--photo-delay:0s;}
+    .gallery-item:nth-child(2n){--photo-delay:.12s;}
+  }
+  @media(max-width:600px){.gallery-item:nth-child(n){--photo-delay:0s;}}
+  @media(prefers-reduced-motion:reduce){
+    .gallery-item.reveal,.about-photo.reveal{opacity:1!important;transform:none!important;transition:none!important;}
+  }
   .photo-description{font-size:14px;line-height:1.6;color:#c4d2e1;margin-top:6px;}
 </style>
 </head>
@@ -839,7 +858,16 @@
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     }), { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => { el.classList.add('will-reveal'); observer.observe(el); });
+    const photoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        photoObserver.unobserve(entry.target);
+      }
+    }), { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.classList.add('will-reveal');
+      (el.matches('.gallery-item,.about-photo') ? photoObserver : observer).observe(el);
+    });
   }
   const navLinks = Array.from(mainNav.querySelectorAll('a'));
   if ('IntersectionObserver' in window) {
