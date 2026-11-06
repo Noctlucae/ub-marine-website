@@ -441,6 +441,9 @@
   .quote-fields input[type=file]::file-selector-button{border:0;border-radius:5px;background:#e6eef4;padding:7px 10px;margin-right:8px;color:var(--navy);}
   .quote-wide{grid-column:1/-1;}
   .quote-trap{display:none;}
+  .quote-consent{display:flex;align-items:flex-start;gap:10px;margin-top:20px;font-size:13px;line-height:1.7;color:var(--text);}
+  .quote-consent input{flex:0 0 auto;width:18px;height:18px;margin-top:4px;accent-color:#0e7c86;}
+  .quote-consent a,.quote-help a{color:#086b75;text-decoration:underline;}
   .quote-help{margin-top:16px;font-size:12px;line-height:1.7;color:var(--muted);}
   .quote-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:24px;}
   .quote-actions .btn{border:0;min-height:48px;}
@@ -697,6 +700,7 @@
     <form id="quoteForm" name="quote-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" action="/quote-thanks.html" class="quote-form">
       <input type="hidden" name="form-name" value="quote-request">
       <input type="hidden" name="subject" value="New quote request — U B Marine Electrical">
+      <input type="hidden" name="privacy-notice-version" value="2026-11-06">
       <input type="hidden" name="language" id="quoteLanguage" value="en">
       <p class="quote-trap" aria-hidden="true"><label>Leave this empty<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <div class="quote-fields">
@@ -718,7 +722,10 @@
         <label><span data-en>Photo (optional)</span><span data-cn>照片（选填）</span><input name="photo" type="file" accept=".jpg,.jpeg,.png,.webp,.heic,.heif" aria-describedby="quoteFileHelp"></label>
       </div>
       <p class="quote-help" id="quoteFileHelp"><span data-en>Up to 2 files: maximum 5 MB each and 7 MB combined. For larger files, please contact us on WhatsApp.</span><span data-cn>最多 2 个文件：单个不超过 5 MB，合计不超过 7 MB。较大文件请通过 WhatsApp 联系我们。</span></p>
-      <p class="quote-help"><span data-en>Your contact details and attachments will be used to respond to this enquiry.</span><span data-cn>您的联系方式及附件将用于处理与回复本次询价。</span></p>
+      <p class="quote-help"><span data-en>We use your details to assess and respond to your enquiry. Unsuccessful enquiries are kept for 6 months after the last meaningful contact. Read our <a href="/privacy.html">Privacy Notice</a> (English / Bahasa Malaysia).</span><span data-cn>资料用于评估及回复本次询价。未成交询价在最后一次实质联系后保留 6 个月。请阅读<a href="/privacy.html">隐私通知</a>（英文／马来文）。</span><br><span lang="ms">Maklumat digunakan untuk menilai dan menjawab pertanyaan anda. Pertanyaan yang tidak menjadi projek disimpan selama 6 bulan selepas hubungan terakhir yang bermakna. Baca <a href="/privacy.html#ms">Notis Privasi</a>.</span></p>
+      <p class="quote-help"><span data-en>Only upload project files you are authorised to share. Remove identity documents, passwords, bank details, personal data about others and confidential information; contact us first to arrange a suitable transfer method.</span><span data-cn>仅上传您有权分享的项目文件。请移除身份证件、密码、银行资料、他人个人资料及机密内容；如需传送，请先联系我们安排合适方式。</span><br><span lang="ms">Muat naik hanya fail projek yang dibenarkan untuk dikongsi. Jangan sertakan dokumen pengenalan, kata laluan, butiran bank, data peribadi orang lain atau maklumat sulit.</span></p>
+      <label class="quote-consent"><input type="checkbox" name="enquiry-consent" value="agreed-2026-11-06" required><span><span data-en>I consent to U B Marine Electrical processing the information I provide to assess, contact me about and respond to this enquiry as described in the Privacy Notice. *</span><span data-cn>我同意 U B Marine Electrical 按隐私通知所述，为评估、联系及回复本次询价处理我提供的资料。*</span><br><span lang="ms">Saya bersetuju U B Marine Electrical memproses maklumat yang saya berikan untuk menilai, menghubungi saya dan menjawab pertanyaan ini seperti diterangkan dalam Notis Privasi. *</span></span></label>
+      <p class="quote-help"><span data-en>This enquiry is not an order or a confirmed quotation. Scope, price and delivery are subject to written agreement.</span><span data-cn>提交询价不构成订单或正式报价；范围、价格及交付时间须另行书面确认。</span></p>
       <p id="quoteStatus" role="status" aria-live="polite" tabindex="-1" hidden></p>
       <div class="quote-actions"><button type="submit" class="btn btn-primary" id="quoteSubmit"><span data-en>Send enquiry</span><span data-cn>提交询价</span></button><a href="https://wa.me/60168799152" target="_blank" rel="noopener" class="quote-whatsapp"><span data-en>Prefer to chat? WhatsApp us →</span><span data-cn>想直接沟通？通过 WhatsApp 联系 →</span></a></div>
     </form>
@@ -814,6 +821,7 @@
           <li><a href="#services" data-en>Services</a><a href="#services" data-cn>服务项目</a></li>
           <li><a href="#gallery" data-en>Our Work</a><a href="#gallery" data-cn>作品展示</a></li>
           <li><a href="#contact" data-en>Contact</a><a href="#contact" data-cn>联系我们</a></li>
+          <li><a href="/privacy.html"><span data-en>Privacy &amp; Cookies</span><span data-cn>隐私与 Cookies</span> / Notis Privasi</a></li>
         </ul>
       </div>
       <div>
