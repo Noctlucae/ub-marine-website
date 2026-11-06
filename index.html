@@ -868,6 +868,7 @@
   }
   function language(cn) {
     html.dataset.lang = cn ? 'cn' : 'en'; html.lang = cn ? 'zh-Hans' : 'en';
+    document.querySelectorAll('a[href^="/privacy"]').forEach(link => { if (!link.getAttribute('href').includes('#ms')) link.href = '/privacy.html?lang=' + (cn ? 'zh' : 'en'); });
     toggle.textContent = cn ? 'EN' : '中文';
     toggle.setAttribute('aria-label', cn ? 'Switch to English' : '切换到中文');
     menuToggle.setAttribute('aria-label', cn ? '打开导航菜单' : 'Open navigation');
