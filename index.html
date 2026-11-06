@@ -503,6 +503,7 @@
   }
   .photo-description{font-size:14px;line-height:1.6;color:#c4d2e1;margin-top:6px;}
 .wa-contacts{position:fixed;right:22px;bottom:90px;width:min(300px,calc(100vw - 32px));padding:20px;background:white;color:var(--navy);border-radius:14px;box-shadow:0 8px 35px rgba(11,35,64,.2);z-index:301;border:1px solid #e2e8ee;}.wa-contacts[hidden]{display:none}.wa-contacts strong{display:block;font-size:15px;margin-bottom:12px}.wa-contacts a{display:block;padding:12px;border-radius:8px;color:var(--navy);text-decoration:none}.wa-contacts a:hover,.wa-contacts a:focus-visible{background:#edf9f1}.wa-contacts small{display:block;color:var(--muted);margin-top:3px}.wa-contacts a:focus-visible{outline:2px solid #168540}@media(max-width:520px){.wa-contacts{right:16px;bottom:78px}}
+.factory-locations{min-width:0}.factory-location+.factory-location{margin-top:22px;padding-top:20px;border-top:1px solid #e2e8ee}.factory-directions{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;padding:9px 15px;border:1px solid var(--accent-2);border-radius:7px;color:var(--accent-2);font-size:14px;font-weight:600;text-decoration:none}.factory-directions:hover{background:#e9f5f5}.factory-directions:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 </style>
 </head>
 <body>
@@ -748,10 +749,17 @@
         <h3 data-cn data-cn-block>公司资料</h3>
         <div class="info-row">
           <div class="ic">📍</div>
-          <div>
-            <div class="lbl" data-en>Address</div><div class="lbl" data-cn data-cn-block>地址</div>
-            <div class="val" data-en>No. 28, Lorong 4, Jalan Ding Lik Kwong, Sungai Merah, 96000 Sibu, Sarawak, Malaysia</div>
-            <div class="val" data-cn data-cn-block>马来西亚砂拉越诗巫（Sibu）双溪美拉（Sungai Merah）Jalan Ding Lik Kwong 4巷28号，邮编96000</div>
+          <div class="factory-locations">
+            <div class="factory-location">
+              <div class="lbl" data-en>New Factory · Office</div><div class="lbl" data-cn data-cn-block>新厂 · 办公室</div>
+              <div class="val" data-en>Office, CNC cutting, wiring and store — Sibu, Sarawak</div><div class="val" data-cn data-cn-block>办公室、CNC 切割、布线及仓库 — 砂拉越诗巫</div>
+              <a class="factory-directions" href="https://maps.app.goo.gl/NoMMWHvEkgdhWTZp8" target="_blank" rel="noopener"><span data-en>New factory directions ↗</span><span data-cn>新厂导航 ↗</span></a>
+            </div>
+            <div class="factory-location">
+              <div class="lbl" data-en>Old Factory · Metalwork</div><div class="lbl" data-cn data-cn-block>旧厂 · 铁工车间</div>
+              <div class="val" data-en>No. 28, Lorong 4, Jalan Ding Lik Kwong, Sungai Merah, 96000 Sibu, Sarawak, Malaysia</div><div class="val" data-cn data-cn-block>马来西亚砂拉越诗巫双溪美拉 Jalan Ding Lik Kwong 4 巷 28 号，邮编 96000</div>
+              <a class="factory-directions" href="https://maps.app.goo.gl/bQZ2tp53v4z422Cp9" target="_blank" rel="noopener"><span data-en>Old factory directions ↗</span><span data-cn>旧厂导航 ↗</span></a>
+            </div>
           </div>
         </div>
         <div class="info-row">
