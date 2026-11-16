@@ -1,7 +1,7 @@
 # U B Marine Electrical Sdn. Bhd. — 网站文件说明
 
 ## 线上地址
-https://thriving-puffpuff-cc23d6.netlify.app/
+https://ubmarine.com.my/
 （部署在你自己的Netlify账号nsyit9@gmail.com下，登录 app.netlify.com 可以看到这个站点并管理）
 
 ## 自动部署（已设置好，2026-08-13）
@@ -70,3 +70,8 @@ push成功后Netlify会自动检测到并重新部署，一两分钟后线上就
 
 ## 下一步
 把以上占位信息发给我，我会直接改好 `index.html`，或者你也可以自己用文本编辑器搜索替换。
+
+## 地址与导航（2026-11-16）
+- 新厂／办公室：Lot 203, Block 5, Seduan Land District, 96000 Sibu, Sarawak, Malaysia。地址及 Google Maps 导航按钮使用已核对的商家 Place ID `ChIJW9ESG5x59zERUG4FS0936yQ`。
+- 旧厂／铁工车间继续保留原地址和地图链接；不要把两间厂当成同一个地点。
+- 隐私声明的英文、马来文及中文联络地址同步到新厂办公室。
